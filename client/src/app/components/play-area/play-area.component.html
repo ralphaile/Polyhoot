@@ -1,0 +1,58 @@
+<div *ngIf="playAreaService.state.isLeaving" class="blur-filter">
+    <app-leave-interface [userType]="playAreaService.userTypeValue" (isNotLeaving)="playAreaService.state.isLeaving = false"></app-leave-interface>
+</div>
+<div class="play-area-wrapper" #playArea>
+    <div class="timer-and-current-score">
+        <div class="top-bar timer-container">
+            <app-timer *ngIf="playAreaService.state.isLoaded && !playAreaService.state.doesSeeResult"></app-timer>
+        </div>
+        <h2 class="top-bar current-score-container">Score: {{ playAreaService.state.currentScore }}</h2>
+        <div class="leave-button-container top-bar">
+            <button mat-raised-button color="warn" class="leave-button" (click)="leaveProtocol()" [disabled]="playAreaService.state.isLeaving">
+                Abandoner
+            </button>
+        </div>
+    </div>
+    <div class="question-container" *ngIf="playAreaService.state.isLoaded">
+        <div class="question">({{ playAreaService.state.currentQuestion.points + ' points - ' + playAreaService.state.currentQuestion.type }}) : {{ playAreaService.state.currentQuestion.text }}</div>
+    </div>
+    <div class="answers-container">
+        <div *ngIf="playAreaService.state.isSubmitting">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <app-choice-holder
+            *ngIf="isPlayingMultipleChoiceQuestion()"
+            [ngClass]="{
+                displayed: playAreaService.state.isSubmitting
+            }"
+            [isEnabled]="!playAreaService.state.isWaiting"
+            class="choice-holder"
+        ></app-choice-holder>
+        <app-qrl-answer-holder
+            *ngIf="isPlayingLongAnswerQuestion()"
+            [isEnabled]="!playAreaService.state.isWaiting && !playAreaService.state.isLeaving"
+            class="qrl-answer-holder"
+        ></app-qrl-answer-holder>
+        <app-result-histogram *ngIf="playAreaService.state.doesSeeResult" (switchQuestion)="switchQuestion($event)"></app-result-histogram>
+    </div>
+    <div *ngIf="playAreaService.state.isFirst" class="first-to-answer-message">
+        <button class="close-button" (click)="closeFirstWindow()">
+            <mat-icon fontIcon="close"></mat-icon>
+        </button>
+        <h2>Bravo pour votre rapidité : +20% de points bonus !</h2>
+    </div>
+    <div *ngIf="playAreaService.state.isEvaluating" class="grade-evaluation">
+        <h2>L'évaluation de l'organisateur est en cours...</h2>
+    </div>
+    <div *ngIf="playAreaService.state.isGraded" class="grade-evaluation">
+        <h2>Vous avez reçu la note de {{ playAreaService.state.grade }}%</h2>
+    </div>
+    <div class="submit-area" *ngIf="!playAreaService.state.isWaiting">
+        <button class="submitButton button" (click)="submitProtocol()" [disabled]="playAreaService.state.isWaiting">Envoyer</button>
+    </div>
+</div>

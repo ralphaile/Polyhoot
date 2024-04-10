@@ -1,0 +1,72 @@
+<section *ngIf="currentQuizFormState.currentPage === 'create-quiz'" class="formContainer">
+    <form id="quizForm" [formGroup]="quizForm">
+        <div>
+            <label for="title">Nom:</label>
+            <textarea id="title" maxlength="50" type="text" formControlName="title"> </textarea>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" maxlength="200" type="text" formControlName="description" required rows="4"> </textarea>
+        </div>
+        <div>
+            <label for="duration">Durée des QCM:</label>
+            <input id="duration" onkeydown="return false;" type="number" formControlName="duration" min="10" max="60" step="5" required />
+        </div>
+        <div>
+            <div class="question-label">
+                <div class="left-question-label">
+                    <label id="question-label" for="questions">Questions:</label>
+                </div>
+                <div class="right-question-label">
+                    <button (click)="showBank()" class="button" mat-raised-button>Voir Banque</button>
+                    <button (click)="createQuestion()" class="button" mat-raised-button>Créer question</button>
+                </div>
+            </div>
+            <div cdkDropList (cdkDropListDropped)="onDropEvent($event)">
+                <div *ngFor="let question of quizQuestions; let i = index" cdkDrag cdkDragHandle class="draggable" [ngStyle]="{ 'background-color': getQuestionColor(question) }">
+                    <div class="question-container">
+                        <label class="draggableInfo" [for]="'question' + i">
+                            {{ i + 1 + '. ' + getQuestionText(question) }}
+                        </label>
+                        <div class="button-container">
+                            <button
+                                (click)="addToBank(question)"
+                                class="button"
+                                [disabled]="isInBank(question.text)"
+                                mat-raised-button
+                                color="accent"
+                            >
+                                Ajouter à banque
+                            </button>
+                            <button (click)="modifyQuestion(question)" class="button" mat-raised-button color="primary">Modifier</button>
+                            <button class="button" (click)="confirmDelete(question)" mat-raised-button color="warn">Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="submitButton" (click)="onSubmit()" mat-raised-button [disabled]="!currentQuizFormState.isFormChanged" type="submit">
+            {{getSubmitButtonText() + " quiz"}}
+        </button>
+        <button (click)="confirmQuizCancel()" class="cancel-button" mat-raised-button color="warn">Annuler</button>
+    </form>
+</section>
+<button class="return-button" *ngIf="currentQuizFormState.currentPage === 'bank'" (click)="showBank()" mat-raised-button color="warn">Retour</button>
+<div>
+    <app-question-list
+        (addQuestionEvent)="addQuestion($event)"
+        *ngIf="currentQuizFormState.currentPage === 'bank'"
+        [isInQuizPage]="true"
+        [questionsInQuiz]="currentQuizFormState.currentQuiz.questions"
+    ></app-question-list>
+</div>
+
+<app-create-question
+    *ngIf="currentQuizFormState.currentPage === 'create-question'"
+    (changeViewEvent)="cancelQuestionForm()"
+    [isInQuizPage]="true"
+    class="formContainer"
+    [currentQuestion]="currentQuizFormState.currentQuestion"
+    (addQuestionEvent)="validateQuestion($event)"
+></app-create-question>

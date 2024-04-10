@@ -1,0 +1,30 @@
+$inner-padding: 20px;
+$x-button-margin: 15px;
+
+.alert {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: $inner-padding;
+    background-color: #f44336;
+    width: calc(100vw - $inner-padding * 2);
+    color: white;
+    height: auto;
+}
+
+.closebtn {
+    margin-left: auto;
+    height: 20px;
+    aspect-ratio: 1;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}

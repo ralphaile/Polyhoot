@@ -1,0 +1,147 @@
+:host {
+    --bar-width: 200px;
+    --nb-of-bar: 4;
+    --component-height: 600px;
+    --first-bar-modifier: 0.8;
+    --second-bar-modifier: 0.1;
+    --third-bar-modifier: 0.05;
+    --fourth-bar-modifier: 0.05;
+    --top-gab: 40px;
+    --bar-text-x-pos: 0;
+    --bar-text-y-pos: 0;
+}
+
+$bar-left-margin: 30px;
+
+.master-container {
+    width: 100%;
+    height: 100%;
+    display: inline;
+}
+.histogram-container {
+    background-color: rgb(172, 171, 171);
+    height: 100%;
+    width: calc(100% - 200px);
+    display: inline-block;
+    position: relative;
+    border-radius: 20px;
+}
+
+.previous-button-container {
+    height: 100%;
+    width: 100px;
+    float: left;
+    display: inline-flex;
+}
+
+.previous-button {
+    margin: auto;
+    width: 40px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.next-button-container {
+    height: 100%;
+    width: 100px;
+    float: right;
+    display: inline-flex;
+}
+
+.next-button {
+    margin: auto;
+    width: 40px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.disabled {
+    cursor: default;
+}
+
+.band {
+    height: calc((var(--component-height) - 50px) / var(--nb-of-bar));
+    width: var(--bar-width);
+    min-height: 10px;
+    border-radius: 10px;
+    bottom: 0;
+}
+
+.firstChoice {
+    background-color: #8d90e2;
+    height: calc((var(--component-height) - 50px) * var(--first-bar-modifier) - var(--top-gab));
+}
+
+.secondChoice {
+    background-color: #a8e6cf;
+    height: calc((var(--component-height) - 50px) * var(--second-bar-modifier) - var(--top-gab));
+}
+
+.thirdChoice {
+    background-color: #ff8b94;
+    height: calc((var(--component-height) - 50px) * var(--third-bar-modifier) - var(--top-gab));
+}
+
+.fourthChoice {
+    background-color: #f3c6f2;
+    height: calc((var(--component-height) - 50px) * var(--fourth-bar-modifier) - var(--top-gab));
+}
+
+.bands-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+}
+
+.band-container {
+    display: inline;
+    margin-top: auto;
+    margin-left: $bar-left-margin;
+    margin-bottom: 0;
+}
+.band-container:first-child {
+    margin-left: calc(50% - (var(--bar-width) * var(--nb-of-bar) + $bar-left-margin * (var(--nb-of-bar) - 1)) / 2);
+}
+
+.nb-of-votes {
+    text-align: center;
+    font-weight: bold;
+}
+
+.question-index-correct {
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: green;
+}
+.question-index-incorrect {
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: red;
+}
+
+.choice-text-container {
+    bottom: calc(100vh - var(--bar-text-y-pos) + 15px);
+    left: calc(var(--bar-text-x-pos) - var(--bar-width) / 2);
+    position: fixed;
+    height: auto;
+    width: calc(var(--bar-width) - 30px);
+    background-color: rgb(145, 137, 137);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px;
+    z-index: 1;
+    user-select: none;
+}
+
+.question-progression {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}

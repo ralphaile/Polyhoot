@@ -1,0 +1,92 @@
+form {
+    width: 60%;
+    padding: 5%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+}
+
+.draggable {
+    border: 2px solid #3a3838;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #d9d9d9;
+    cursor: pointer;
+}
+
+.draggableInfo {
+    cursor: pointer;
+    margin-right: 10%;
+}
+
+.button {
+    margin: 1%;
+}
+
+.question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 8px;
+}
+
+.question-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5%;
+}
+
+.left-question-label {
+    text-align: left;
+}
+
+.right-question-label {
+    display: flex;
+    gap: 10px;
+    text-align: right;
+}
+
+.cancel-button {
+    margin: 3px;
+}
+
+@media screen and (max-width: 1000px) {
+    .button-container {
+        flex-direction: column;
+    }
+}
+
+.cancel-button {
+    float: right;
+}
+
+.return-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}

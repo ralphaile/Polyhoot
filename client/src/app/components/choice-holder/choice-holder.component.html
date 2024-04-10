@@ -1,0 +1,22 @@
+<div class="choice-holder-wrapper">
+    <div *ngFor="let choice of choices; index as i">
+        <div
+            class="choice-button"
+            [ngClass]="{
+                firstChoice: i === 0,
+                secondChoice: i === 1,
+                thirdChoice: i === 2,
+                fourthChoice: i === 3,
+                dimmed: isCurrentAnswers[i],
+                disabled: !isEnabled
+            }"
+            (click)="selectChoice(i)"
+        >
+            <div class="choice-info-container">
+                <div class="grid-item choice-text">{{ i + 1 + '. ' + choice }}</div>
+                <div *ngIf="isCorrectAnswers && isCorrectAnswers[i]" class="grid-item correct-mark">&#10003;</div>
+                <div *ngIf="isCorrectAnswers && !isCorrectAnswers[i] && isCurrentAnswers[i]" class="grid-item incorrect-mark">&#10007;</div>
+            </div>
+        </div>
+    </div>
+</div>

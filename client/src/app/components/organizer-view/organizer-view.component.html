@@ -1,0 +1,26 @@
+<div *ngIf="currentState.isLeaving" class="blur-filter">
+    <app-leave-interface [userType]="getUserType()" (isNotLeaving)="currentState.isLeaving = false"></app-leave-interface>
+</div>
+<div class="play-area-wrapper" #playArea>
+    <div class="timer-and-current-score">
+        <div class="top-bar timer-container">
+            <app-timer *ngIf="isTimerEnabled()" [questionType]="questionType"></app-timer>
+        </div>
+        <div class="leave-button-container top-bar">
+            <button mat-raised-button color="warn" class="leave-button" (click)="leaveProtocol()">Quitter</button>
+        </div>
+    </div>
+    <div class="question-container" *ngIf="currentState.isLoaded">
+        <div class="question">({{ currentQuestion.points + ' points - ' + currentQuestion.type }}) : {{ currentQuestion.text }}</div>
+    </div>
+    <div class="histogram-container">
+        <app-result-histogram (switchQuestion)="switchQuestion($event)"></app-result-histogram>
+    </div>
+    <div class="evaluation" *ngIf="evaluationDisplay">
+        <app-evaluation [responsesArray]="responsesArray" (allResponsesEvaluated)="handleAllResponsesEvaluated($event)"> </app-evaluation>
+    </div>
+    <div class="next-question-area">
+        <button *ngIf="currentState.canGoToNextQuestion" class="continueButton button" (click)="goToNextQuestion()">Continuer</button>
+        <button *ngIf="currentState.canGoToResultView" class="resultButton button" (click)="goToResultView()">Afficher les résultat</button>
+    </div>
+</div>

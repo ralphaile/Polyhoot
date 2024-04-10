@@ -1,0 +1,22 @@
+<div *ngIf="countdown > 0" class="blur-filter">
+    <div class="start-countdown">
+        <h2>La prochaine question commence dans {{ countdown }} secondes.</h2>
+    </div>
+</div>
+<div
+    [ngClass]="{
+        mouseResizing: isResizing
+    }"
+    (mouseup)="isResizing = false"
+    (mousemove)="trackSliding($event)"
+>
+    <div class="play-area-and-sidebar-container" [ngStyle]="{ '--chat-wight': chatWidth + 'px', '--player-list-width': playerListWidth + 'px' }">
+        <app-sidebar id="sidebar"></app-sidebar>
+        <div (mousedown)="isResizing = true" class="master-resizer" (window:resize)="resizeChat()"></div>
+        <section class="play-area-container">
+            <app-play-area *ngIf="canSeePlayArea()" class="play-area" tabindex="0"></app-play-area>
+            <app-organizer-view *ngIf="playerType === 'Organizer'" class="play-area" tabindex="0"></app-organizer-view>
+        </section>
+        <app-player-score-list *ngIf="canSeeResults()" class="player-list"></app-player-score-list>
+    </div>
+</div>

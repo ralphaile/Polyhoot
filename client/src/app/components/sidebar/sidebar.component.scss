@@ -1,0 +1,161 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 20px);
+}
+
+.message-input-area {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    margin-bottom: 14spx;
+
+    input {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+}
+
+.message {
+    height: auto;
+    padding: 5px;
+    max-width: calc(100% - 10px - 2rem);
+    width: fit-content;
+    background-color: #a4a4a4;
+    border-radius: 5px;
+    line-break: anywhere;
+    font-size: 1rem;
+    margin-top: 3px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.message:last-child {
+    margin-bottom: 20px;
+}
+
+.message-display {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.message-sent {
+    text-align: right;
+    background-color: #eadaf8;
+    margin-left: 50%;
+    padding: 5px;
+    border-radius: 10px;
+    line-break: anywhere;
+}
+
+.message-received {
+    text-align: left;
+    background-color: #ececec;
+    margin-right: 50%;
+    padding: 5px;
+    border-radius: 10px;
+    line-break: anywhere;
+}
+.system-message {
+    text-align: center;
+    line-break: anywhere;
+    color: red;
+}
+
+.message-info {
+    text-align: left;
+    font-size: 0.75em;
+    margin-bottom: 2px;
+}
+
+.sender-name {
+    font-weight: bold;
+}
+
+.message-time {
+    margin-left: 10px;
+    opacity: 0.8;
+}
+
+.message-input {
+    box-sizing: border-box;
+    width: calc(100% - 10px);
+    height: 100%;
+    margin-left: 10px;
+
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 6px;
+    font-size: 1.2rem;
+}
+.message-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+.message-input:focus {
+    background: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    outline: none;
+}
+.message-input:active {
+    background: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    outline: none;
+}
+
+.submit-button {
+    box-sizing: border-box;
+    width: 50px;
+    height: 100%;
+    margin-right: 5px;
+    user-select: none;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #d9d9d9;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+}
+.submit-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    outline: none;
+}
+.submit-button:active {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    outline: none;
+}
+
+.chat-header {
+    background-color: #4a148c;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 2px solid #380e6a;
+    margin-bottom: 10px;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin-top: 4px;
+}
+
+.warning-message {
+    color: #b9a3ce;
+    margin-top: 5px;
+    font-size: 12px;
+}

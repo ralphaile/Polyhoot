@@ -1,0 +1,45 @@
+<div class="radio-button-and-create-background">
+    <mat-radio-group color="primary" [(ngModel)]="selectedType" (change)="filterQuestions()">
+        <mat-radio-button class="radio-button-text" value="ALL"> Toutes </mat-radio-button>
+        <mat-radio-button class="radio-button-text" value="QCM"> QCM </mat-radio-button>
+        <mat-radio-button class="radio-button-text" value="QRL"> QRL </mat-radio-button>
+    </mat-radio-group>
+    <button *ngIf="!isInQuizPage" class="create-button" (click)="changeView(null)" mat-raised-button color="accent">Créer</button>
+</div>
+<table mat-table [dataSource]="questions">
+    <ng-container matColumnDef="position">
+        <th class="number-top-row" mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+    </ng-container>
+    <ng-container matColumnDef="text">
+        <th mat-header-cell *matHeaderCellDef>Question</th>
+        <td mat-cell *matCellDef="let question">{{ getQuestionText(question) }}</td>
+    </ng-container>
+    <ng-container *ngIf="!isInQuizPage" matColumnDef="modified">
+        <th mat-header-cell *matHeaderCellDef>Dernière modification</th>
+        <td mat-cell *matCellDef="let question">{{ question.lastModification | date: 'd/MM/y - HH:mm:ss' }}</td>
+    </ng-container>
+    <ng-container *ngIf="isInQuizPage" matColumnDef="modified">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let question"></td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let question">
+            <button mat-raised-button *ngIf="!isInQuizPage" (click)="changeView(question)" class="action-button" color="primary">Modifier</button>
+            <button mat-raised-button *ngIf="!isInQuizPage" class="action-button" (click)="confirmDelete(question)" color="warn">Supprimer</button>
+            <button
+                mat-raised-button
+                *ngIf="isInQuizPage"
+                (click)="addQuestionInQuiz(question)"
+                class="action-button"
+                [disabled]="isQuestionInQuiz(question)"
+                color="accent"
+            >
+                Ajouter
+            </button>
+        </td>
+    </ng-container>
+    <tr class="top-bar" mat-header-row *matHeaderRowDef="['position', 'text', 'modified', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['position', 'text', 'modified', 'actions']" [ngStyle]="{ 'background-color': getRowColor(row) }"></tr>
+</table>

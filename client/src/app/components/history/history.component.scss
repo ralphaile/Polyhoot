@@ -1,0 +1,45 @@
+.top-bar {
+    background-color: hsl(0, 0%, 52%);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 80px;
+}
+.header-cell {
+    font-weight: bold;
+}
+
+::ng-deep .mat-mdc-table .mdc-data-table__header-row {
+    background-color: #d3d3d3;
+}
+
+::ng-deep .mat-mdc-table {
+    background-color: #a9a9a9;
+}
+
+::ng-deep label.mdc-label {
+    font-weight: bold;
+}
+
+.reset-button {
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 40px;
+    height: 40px;
+    width: 120px;
+    font-size: 125%;
+}
+
+.toggle-button-group {
+    padding-left:10px;
+    padding-top:15px;
+    border: none;
+}
+
+.toggle-button1 {
+    border-radius: 30% 0% 0% 30%;
+}
+
+.toggle-button2 {
+    border-radius: 0% 30% 30% 0%;
+}

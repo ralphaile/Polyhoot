@@ -1,0 +1,39 @@
+<div class="chat-container">
+    <div class="chat-header">
+        Clavardage
+        <div class="user-name">{{ messagesReader.userName }}</div>
+    </div>
+    <div class="message-display" #messageDisplay>
+        <div
+            *ngFor="let message of messagesReader.messages"
+            [ngClass]="{
+                'system-message': message.senderName === 'System',
+                'message-sent': message.senderName === messagesReader.userName,
+                'message-received': message.senderName !== messagesReader.userName && message.senderName !== 'System'
+            }"
+        >
+            <div class="message-info">
+                <span *ngIf="message.senderName === messagesReader.userName; else elseBlock" class="sender-name">Vous</span>
+                <ng-template #elseBlock
+                    ><span class="sender-name">{{ message.senderName }}</span></ng-template
+                >
+                <span class="message-time">{{ message.time | date: 'shortTime' }}</span>
+            </div>
+            <div class="message-content">{{ message.message }}</div>
+        </div>
+    </div>
+    <div class="message-input-area">
+        <input
+            class="message-input"
+            [(ngModel)]="messagesReader.newMessage"
+            type="text"
+            placeholder="Type a message"
+            (keyup.enter)="verifyMessage()"
+            maxlength="200"
+        />
+        <div *ngIf="messagesReader.newMessage.length >= 200" class="warning-message">Limite de 200 caractères!</div>
+        <button class="submit-button" (click)="verifyMessage()">
+            <mat-icon aria-hidden="false" fontIcon="send"></mat-icon>
+        </button>
+    </div>
+</div>

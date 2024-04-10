@@ -1,0 +1,83 @@
+$headerHeight: 80px;
+
+body {
+    height: 100vw;
+    width: 100vw;
+}
+
+.master-container {
+    background: repeating-linear-gradient(45deg, #7724bb, #0c0b0c 15vw);
+    display: flex;
+    height: calc(100vh - $headerHeight);
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+}
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.master-container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - $headerHeight);
+    background: rgb(40, 1, 77);
+    animation: pulse 3s ease-in-out infinite;
+    z-index: 1;
+}
+
+.justified {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #d9d9d9;
+    z-index: 2;
+}
+
+.button {
+    margin-top: 40%;
+    width: 170px;
+    height: 80px;
+    text-align: center;
+    font-size: 200%;
+    background-color: #8458b3;
+    color: #d9d9d9;
+    border: 2px solid #8458b3;
+    border-radius: 10px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+}
+
+.button:hover {
+    background-color: #b192d2;
+    border: 2px solid #b192d2;
+}
+
+.button:last-child {
+    margin-bottom: 20%;
+}
+
+.team-name {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    color: #d9d9d9;
+    z-index: 2;
+}
+
+.footer-item {
+    text-align: center;
+    z-index: 2;
+}

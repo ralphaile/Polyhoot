@@ -1,0 +1,28 @@
+<div class="top-bar">
+    <button class="create-button" mat-raised-button (click)="changeView(null)" color="accent">Créer</button>
+    <input type="file" class="file-input" (change)="importQuiz($event)" #fileUpload />
+    <button class="import-button" mat-raised-button (click)="fileUpload.click()" color="primary">Importer</button>
+</div>
+<mat-table [dataSource]="quizzes">
+    <ng-container matColumnDef="title">
+        <mat-header-cell class="header-cell" *matHeaderCellDef>Nom</mat-header-cell>
+        <mat-cell *matCellDef="let quiz">{{ quiz.title }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="modified">
+        <mat-header-cell class="header-cell" *matHeaderCellDef>Dernière modification</mat-header-cell>
+        <mat-cell *matCellDef="let quiz">{{ quiz.lastModification | date: 'd/MM/y - HH:mm:ss' }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let quiz">
+            <button mat-raised-button (click)="changeView(quiz)" color="primary">Modifier</button>
+            <button mat-raised-button (click)="confirmDelete(quiz)" color="warn">Supprimer</button>
+            <button mat-raised-button (click)="exportQuiz(quiz)" color="accent">Exporter</button>
+            <button mat-raised-button (click)="toggleVisibility(quiz)" title="{{ quiz.isVisible ? 'Visible' : 'Not Visible' }}" color="primary">
+                <i class="material-icons">{{ quiz.isVisible ? 'visibility' : 'visibility_off' }}</i>
+            </button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['title', 'modified', 'actions']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['title', 'modified', 'actions']"></mat-row>
+</mat-table>

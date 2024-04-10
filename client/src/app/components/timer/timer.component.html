@@ -1,0 +1,36 @@
+<div
+    class="timerContainer"
+    [ngClass]="{
+        displayButton: playerType === 'Organizer'
+    }"
+>
+    <div
+        class="demo"
+        [ngStyle]="{
+            '--rotation-speed': rotationSpeed + 's'
+        }"
+    >
+        <div class="demo__colored-blocks">
+            <div class="demo__colored-blocks-rotater">
+                <div *ngFor="let _ of numberOfColor" class="demo__colored-block"></div>
+            </div>
+        </div>
+        <div class="demo__colored-blocks-inner">
+            <h2 class="time">{{ this.time }}</h2>
+        </div>
+    </div>
+    <div *ngIf="playerType === 'Organizer'" class="buttonsContainer">
+        <button [disabled]="buttonsAreDisable" [ngClass]="{ disable: buttonsAreDisable }" class="pauseButton button" (click)="pauseTimer()">
+            <mat-icon *ngIf="!isPaused" fontIcon="pause"></mat-icon>
+            <mat-icon *ngIf="isPaused" fontIcon="play_arrow"></mat-icon>
+        </button>
+        <button
+            class="panicButton button"
+            (click)="enterPanicMode()"
+            [disabled]="isPanicButtonDisable()"
+            [ngClass]="{ disable: isPanicButtonDisable() }"
+        >
+            <mat-icon fontIcon="notifications_active"></mat-icon>
+        </button>
+    </div>
+</div>

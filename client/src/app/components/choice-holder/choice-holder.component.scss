@@ -1,0 +1,96 @@
+.choice-holder-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+.grid-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.choice-button {
+    box-sizing: border-box;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20px;
+    display: flex;
+    border: none;
+    outline: none;
+}
+
+.choice-button:focus {
+    border: none;
+    outline: none;
+}
+
+.choice-button:hover {
+    filter: brightness(95%);
+    border: none;
+    outline: none;
+}
+
+.choice-button:active {
+    border: none;
+    outline: none;
+}
+
+.grid-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.choice-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: black;
+}
+
+.choice-info-container {
+    margin: auto;
+}
+
+.firstChoice {
+    margin-left: 20px;
+    width: calc(100% - 20px);
+    background-color: #8d90e2;
+}
+
+.secondChoice {
+    margin-right: 20px;
+    width: calc(100% - 20px);
+    background-color: #a8e6cf;
+}
+
+.thirdChoice {
+    margin-left: 20px;
+    width: calc(100% - 20px);
+    background-color: #ff8b94;
+}
+
+.fourthChoice {
+    margin-right: 20px;
+    width: calc(100% - 20px);
+    height: 100%;
+    background-color: #f3c6f2;
+}
+
+.choice-button.dimmed {
+    filter: brightness(75%);
+}
+
+.correct-mark {
+    color: #28a745;
+    font-size: 2rem;
+    margin-left: 10px;
+}
+
+.incorrect-mark {
+    color: #dc3545;
+    font-size: 2rem;
+    margin-left: 10px;
+}

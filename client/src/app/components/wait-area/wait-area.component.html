@@ -1,0 +1,58 @@
+<div *ngIf="isLeaving" class="blur-filter">
+    <app-leave-interface [userType]="userType" (isNotLeaving)="isLeaving = false"> </app-leave-interface>
+</div>
+<div *ngIf="waitAreaInformation.countdown >= 1" class="blur-filter">
+    <div class="start-countdown">
+        <h2>{{ waitAreaInformation.gameTitle }} commence dans {{ waitAreaInformation.countdown }} secondes.</h2>
+    </div>
+</div>
+<div class="wait-area-wrapper" #waitArea>
+    <div class="game-code-and-leave-button">
+        <div class="lock-button-container">
+            <button
+                class="start-game-button"
+                [matTooltip]="getReasonStartGameIsDisabled()"
+                [matTooltipDisabled]="!isStartGameDisable()"
+                [disabled]="isStartGameDisable()"
+                [ngClass]="{ disable: isStartGameDisable() }"
+                *ngIf="waitAreaInformation.isOrganizer"
+                (click)="startGame()"
+            >
+                Commencer
+            </button>
+            <button class="lock-button" *ngIf="waitAreaInformation.isOrganizer" (click)="toggleLock()">
+                <mat-icon *ngIf="waitAreaInformation.isLocked" class="lock-icone" fontIcon="lock"></mat-icon>
+                <mat-icon *ngIf="!waitAreaInformation.isLocked" class="lock-open-icone" fontIcon="lock_open"></mat-icon>
+            </button>
+        </div>
+        <p class="game-code game-title">{{ this.waitAreaInformation.gameTitle }}</p>
+        <h2 class="game-code">Code: {{ this.waitAreaInformation.gameCode }}</h2>
+
+        <div class="leave-button-container">
+            <button mat-raised-button color="warn" class="leave-button" (click)="isLeaving = true" [disabled]="isLeaving">Partir</button>
+        </div>
+    </div>
+    <ul class="player-list">
+        <li class="players-list-container" *ngFor="let player of waitAreaInformation.playersList; index as i">
+            <div
+                class="player"
+                [ngClass]="{
+                    firstColor: i % 4 === 0,
+                    secondColor: i % 4 === 1,
+                    thirdColor: i % 4 === 2,
+                    fourthColor: i % 4 === 3,
+                    organizerView: waitAreaInformation.isOrganizer
+                }"
+            >
+                <span class="player-name">
+                    {{ player }}
+                </span>
+                <button *ngIf="waitAreaInformation.isOrganizer" class="ban-button" (click)="banPlayerName(player)">
+                    <mat-icon class="block-icone" fontIcon="block"></mat-icon>
+                </button>
+            </div>
+        </li>
+    </ul>
+
+    <div class="start-button-area"></div>
+</div>

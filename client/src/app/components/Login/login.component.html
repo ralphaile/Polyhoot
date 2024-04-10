@@ -1,0 +1,13 @@
+<!-- Code adapted from https://freefrontend.com/css-login-forms/ -->
+
+<body>
+    <div class="main">
+        <div class="login">
+            <form>
+                <label for="chk" aria-hidden="true">Connexion</label>
+                <input [(ngModel)]="password" type="password" name="password" placeholder="Mot de passe" required="" autofocus />
+                <button (click)="this.onLogin()">Connexion</button>
+            </form>
+        </div>
+    </div>
+</body>

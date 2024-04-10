@@ -1,0 +1,32 @@
+<div class="master-container">
+    <h2 class="title-available">Liste des quiz disponibles:</h2>
+    <ul class="games-list">
+        <li *ngFor="let quiz of visibleGames()" class="games">
+            <div (click)="selectGame(quiz)" class="game">
+                <h2 class="game-title">{{ quiz.title }}</h2>
+            </div>
+        </li>
+    </ul>
+    <div *ngIf="selectedGame && selectedGame.isVisible" class="details">
+        <button *ngIf="selectedGame" class="button cancel" (click)="selectedGame = null">
+            <mat-icon class="close-icone" fontIcon="close"></mat-icon>
+        </button>
+        <h3>Description:</h3>
+        <p>{{ selectedGame.description }}</p>
+        <h3>Temps pour répondre:</h3>
+        <p>{{ selectedGame.duration }} secondes</p>
+        <h3>Questions:</h3>
+        <ul *ngIf="selectedGame !== this.randomQuiz">
+            <li *ngFor="let question of selectedGame.questions">{{ question.text }}</li>
+        </ul>
+        <ul *ngIf="selectedGame === this.randomQuiz">
+            <li>???</li>
+            <li>???</li>
+            <li>???</li>
+            <li>???</li>
+            <li>???</li>
+        </ul>
+        <button *ngIf="selectedGame" class="button" (click)="navigateToGame()">Créer partie</button>
+        <button *ngIf="selectedGame && selectedGame !== this.randomQuiz" class="button" (click)="navigateToTest()">Tester le jeu</button>
+    </div>
+</div>

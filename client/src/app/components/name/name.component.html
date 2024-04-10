@@ -1,0 +1,12 @@
+<!-- Code adapted from https://freefrontend.com/css-login-forms/ -->
+<body>
+    <div class="main">
+        <div class="box">
+            <form [formGroup]="nameForm" (ngSubmit)="nameSubmitted()">
+                <label for="playerName">Entrez votre nom de joueur </label>
+                <input type="text" formControlName="playerName" placeholder="Votre nom" required maxlength="30" autofocus />
+                <button type="submit">C'est parti !</button>
+            </form>
+        </div>
+    </div>
+</body>

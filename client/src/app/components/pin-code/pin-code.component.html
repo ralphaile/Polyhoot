@@ -1,0 +1,12 @@
+<!-- Code adapted from https://freefrontend.com/css-login-forms/ -->
+<body>
+    <div class="main">
+        <div class="box">
+            <form [formGroup]="pinCodeForm" (ngSubmit)="submitCode()">
+                <label for="accessCode" aria-hidden="true">Rejoindre une partie</label>
+                <input type="text" formControlName="accessCode" placeholder="Code d'accès du jeu" maxlength="4" required autofocus />
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+</body>

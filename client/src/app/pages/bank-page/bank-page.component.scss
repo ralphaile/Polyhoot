@@ -1,0 +1,24 @@
+$headerHeight: 80px;
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - $headerHeight);
+    width: 100%;
+}
+
+.main-display {
+    height: calc(100vh - $headerHeight);
+    width: 100vw;
+}
+
+.background {
+    overflow-x: hidden;
+    background: repeating-linear-gradient(45deg, #7724bb, #0c0b0c 15vw);
+    display: flex;
+    width: 100vw;
+    height: auto;
+    z-index: -1;
+}

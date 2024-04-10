@@ -1,0 +1,9 @@
+<div class="response-container">
+    <h2>Évaluation des Réponses</h2>
+    <p>Nom de l'utilisateur: {{ responsesArray[currentIndex].userName }}</p>
+    <p>Réponse: {{ responsesArray[currentIndex].longResponse }}</p>
+
+    <button (click)="evaluateResponse(0)">0%</button>
+    <button (click)="evaluateResponse(1 / 2)">50%</button>
+    <button (click)="evaluateResponse(1)">100%</button>
+</div>

@@ -1,0 +1,63 @@
+<div
+    class="master-container"
+    [ngStyle]="{
+        '--first-bar-modifier': graphChoices.barsLength[0],
+        '--second-bar-modifier': graphChoices.barsLength[1],
+        '--third-bar-modifier': graphChoices.barsLength[2],
+        '--fourth-bar-modifier': graphChoices.barsLength[3],
+        '--nb-of-bar': currentDisplayedQuestion.bandInfo.length,
+        '--bar-text-x-pos': graphChoices.choiceTextXPos + 'px',
+        '--bar-text-y-pos': graphChoices.choiceTextYPos + 'px'
+    }"
+>
+    <div class="previous-button-container">
+        <button
+            *ngIf="questions.length !== 1"
+            class="previous-button"
+            (click)="changeQuestion(false)"
+            [disabled]="currentQuestion === 0"
+            [ngClass]="{
+                disabled: currentQuestion === 0
+            }"
+        >
+            <mat-icon aria-hidden="false" fontIcon="arrow_back_ios"></mat-icon>
+        </button>
+    </div>
+    <div class="histogram-container">
+        <div class="bands-container">
+            <div class="band-container" *ngFor="let choice of currentDisplayedQuestion.bandInfo; index as i">
+                <div class="nb-of-votes">{{ currentDisplayedQuestion.bandInfo[i].nbOfSelection }}</div>
+                <div
+                    class="band"
+                    (mouseenter)="trackMousePosition(i)"
+                    (mouseleave)="stopTrackingMousePosition()"
+                    [ngClass]="{
+                        firstChoice: i === 0,
+                        secondChoice: i === 1,
+                        thirdChoice: i === 2,
+                        fourthChoice: i === 3
+                    }"
+                ></div>
+                <span (mouseenter)="trackMousePosition(i)" *ngIf="graphChoices.hoveredChoice === i" class="choice-text-container">{{
+                    currentDisplayedQuestion.bandInfo[i].text
+                }}</span>
+                <div *ngIf="choice.isCorrect" class="question-index-correct">{{ i + 1 }} &#10003;</div>
+                <div *ngIf="!choice.isCorrect" class="question-index-incorrect">{{ i + 1 }} &#10007;</div>
+            </div>
+            <div class="question-progression" *ngIf="questions.length !== 1">{{ currentQuestion + 1 }}/{{ questions.length }}</div>
+        </div>
+    </div>
+    <div class="next-button-container">
+        <button
+            *ngIf="questions.length !== 1"
+            class="next-button"
+            (click)="changeQuestion(true)"
+            [disabled]="currentQuestion === questions.length - 1"
+            [ngClass]="{
+                disabled: currentQuestion === questions.length - 1
+            }"
+        >
+            <mat-icon aria-hidden="false" fontIcon="arrow_forward_ios"></mat-icon>
+        </button>
+    </div>
+</div>

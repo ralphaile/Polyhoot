@@ -1,0 +1,32 @@
+.leave-interface {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background-color: rgba(255, 255, 255, 0.8); /* Set the background color with some transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-leave-button {
+    font-size: 0.9rem;
+    z-index: 21;
+}
+.confirm-leave-button:last-child {
+    margin-left: 10px;
+}
+
+.button {
+    box-sizing: border-box;
+    width: 50px;
+    height: auto;
+    color: black;
+    background-color: rgb(175, 170, 170);
+    border: 2px solid rgb(94, 91, 91);
+    border-radius: 10px;
+    padding: 6px;
+    z-index: 21;
+    cursor: pointer;
+}

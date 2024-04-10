@@ -1,0 +1,63 @@
+.form-container {
+    width: 40%;
+    height: 100%;
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+    overflow-y: hidden;
+}
+
+.cancel-button {
+    float: right;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+.pointsInput {
+    margin-left: 10px;
+    width: 5%;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+}
+.input {
+    width: 100%;
+}
+
+.answerLabel {
+    padding-right: 2%;
+}
+
+.draggable {
+    border: 2px solid #3a3838;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #d9d9d9;
+    cursor: pointer;
+    overflow-wrap: break-word;
+}
+
+.deleteButton {
+    float: right;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.addButton {
+    float: right;
+    font-size: x-large;
+}
+
+#choicesContainer {
+    margin-top:10px;
+}

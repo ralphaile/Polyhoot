@@ -1,0 +1,16 @@
+<div
+    class="window"
+    [ngClass]="{
+        mouseResizing: isResizing
+    }"
+    (mouseup)="isResizing = false"
+    (mousemove)="trackSliding($event)"
+>
+    <div class="master-container" [ngStyle]="{ '--chat-wight': chatWidth + 'px' }">
+        <app-sidebar id="sidebar"></app-sidebar>
+        <div (mousedown)="isResizing = true" class="master-resizer" (window:resize)="resizeChat()"></div>
+        <section class="wait-area-container">
+            <app-wait-area class="wait-area" tabindex="0"></app-wait-area>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<textarea
+    #answer
+    rows="4"
+    cols="50"
+    maxlength="200"
+    [(ngModel)]="longResponseAnswer"
+    (keydown)="handleTab(answer, $event)"
+    (input)="changeCharCount(answer)"
+    [disabled]="!isEnabled"
+></textarea>
+<div class="char-count">{{ numberOfChar }}/200</div>

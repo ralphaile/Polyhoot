@@ -1,0 +1,44 @@
+<div class="list-container">
+    <mat-form-field class="sort">
+        <mat-label>Trier</mat-label>
+        <mat-select matNativeControl [(ngModel)]="sortType" (change)="onSortTypeChange()">
+            <mat-option value="nameAscending">Nom: A à Z</mat-option>
+            <mat-option value="nameDescending">Nom: Z à A</mat-option>
+            <mat-option value="state">État</mat-option>
+            <mat-option value="scoreAscending">Score: Croissant</mat-option>
+            <mat-option value="scoreDescending">Score: Décroissant</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="player-container" *ngFor="let player of playerList; index as i">
+        <div class="name-and-flame-container">
+            <div
+                class="player-name"
+                [ngClass]="{
+                    isDisconnected: isDisconnected(player.state)
+                }"
+                [ngStyle]="{ color: getPlayerColor(player.state) }"
+            >
+                #{{ i + 1 }} - {{ player.name }}
+            </div>
+            <div class="flame-container">
+                <div class="flame-icon">
+                    <div class="player-first-answer">{{ player.nbOfFirstAnswers }}</div>
+                </div>
+            </div>
+            <button class="chat-icon" *ngIf="isOrganizer && !isDisconnected(player.state)" (click)="toggleChat(player.name)">
+                <mat-icon *ngIf="!player.isMuted" fontIcon="speaker_notes_on"></mat-icon>
+                <mat-icon *ngIf="player.isMuted" fontIcon="speaker_notes_off"></mat-icon>
+            </button>
+        </div>
+        <div class="player-score">Score: {{ player.points }}</div>
+        <div
+            *ngIf="getMedal(player) !== ''"
+            class="medal-icon"
+            [ngClass]="{
+                gold: getMedal(player) === 'gold',
+                silver: getMedal(player) === 'silver',
+                bronze: getMedal(player) === 'bronze'
+            }"
+        ></div>
+    </div>
+</div>

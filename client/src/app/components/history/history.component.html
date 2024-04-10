@@ -1,0 +1,35 @@
+<div class="top-bar">
+    <mat-button-toggle-group class="toggle-button-group" [(ngModel)]="isAscending" (change)="onSortChange()">
+        <mat-button-toggle class="toggle-button1" [value]=true aria-label="Text align left">
+            <mat-icon>arrow_upward</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle class="toggle-button2" [value]=false aria-label="Text align center">
+            <mat-icon>arrow_downward</mat-icon>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-radio-group [(ngModel)]="sortType" color="primary" (change)="onSortChange()">
+        <mat-radio-button class="radio-button-text" value="date"> Dates </mat-radio-button>
+        <mat-radio-button class="radio-button-text" value="name"> Noms </mat-radio-button>
+    </mat-radio-group>
+    <button class="reset-button" mat-raised-button color="warn" (click)="deleteConfirmation()">Réinitialiser</button>
+</div>
+<table mat-table [dataSource]="history">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell class="header-cell" *matHeaderCellDef>Jeu</th>
+        <td mat-cell *matCellDef="let game">{{ game.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="startTime">
+        <th mat-header-cell class="header-cell" *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let game">{{ game.startTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="players">
+        <th mat-header-cell class="header-cell" *matHeaderCellDef>Joueurs</th>
+        <td mat-cell *matCellDef="let game"> {{ game.players }}</td>
+    </ng-container>
+    <ng-container matColumnDef="bestScore">
+        <th mat-header-cell class="header-cell" *matHeaderCellDef>Meilleur Score</th>
+        <td mat-cell *matCellDef="let game">{{ game.bestScore }}</td>
+    </ng-container>
+    <tr class="top-bar" mat-header-row *matHeaderRowDef="['name', 'startTime', 'players', 'bestScore']"></tr>
+    <tr mat-row *matRowDef="let row; columns: [ 'name', 'startTime', 'players',  'bestScore']" [ngStyle]="{ 'background-color': 'DarkGrey' }"></tr>
+</table>

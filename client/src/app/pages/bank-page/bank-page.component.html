@@ -1,0 +1,8 @@
+<div class="background">
+    <section class="main-display" *ngIf="!showingForm">
+        <app-question-list class="question-list" [isInQuizPage]="false" (changeViewEvent)="changeView($event)"></app-question-list>
+    </section>
+    <section class="main-display" *ngIf="showingForm">
+        <app-create-question class="form-container" [currentQuestion]="currentQuestion" (changeViewEvent)="changeView($event)"></app-create-question>
+    </section>
+</div>

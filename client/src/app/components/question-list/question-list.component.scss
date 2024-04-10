@@ -1,0 +1,29 @@
+.radio-button-and-create-background {
+    background-color: hsl(0, 0%, 52%);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 80px;
+}
+
+::ng-deep label.mdc-label {
+    font-weight: bold;
+}
+.create-button {
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 40px;
+    height: 40px;
+    width: 100px;
+    font-size: 125%;
+}
+
+.action-button {
+    margin: 5px;
+}
+
+.top-bar {
+    background-color: lightgray;
+    border-top-right-radius: 100px;
+    border-top-left-radius: 100px;
+}

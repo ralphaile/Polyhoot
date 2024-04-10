@@ -1,0 +1,2 @@
+<app-pin-code *ngIf="!codeEntered" (codeSubmitted)="codeSubmitted($event)"></app-pin-code>
+<app-name (playerConnected)="navigateToWaitingPage()" [gameCode]="code" *ngIf="codeEntered"></app-name>

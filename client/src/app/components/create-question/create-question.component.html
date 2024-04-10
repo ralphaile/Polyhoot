@@ -1,0 +1,43 @@
+<form class="form-container" [formGroup]="isMultipleChoiceQuestion ? multipleChoicesQuestionForm : longQuestionForm" (ngSubmit)="currentQuestion ? onSubmit(true) : onSubmit(false)">
+    <div>
+        <label for="text">Question:</label>
+        <textarea id="text" maxlength="200" type="text" formControlName="text" required rows="4"> </textarea>
+    </div>
+    <div>
+        <input type="radio" value="QCM" formControlName="type" (click)="changeType('QCM')" required />QCM
+        <input type="radio" value="QRL" formControlName="type" (click)="changeType('QRL')" required />QRL
+    </div>
+    <span>
+        <label for="points">Points:</label>
+        <input
+            class="pointsInput"
+            onkeydown="return false;"
+            id="points"
+            type="number"
+            formControlName="points"
+            min="10"
+            max="100"
+            step="10"
+            required
+        />
+        
+    </span>
+    <span>
+        <button class="addButton" *ngIf="isMultipleChoiceQuestion" mat-raised-button (click)="addChoice()" type="button" color="accent">+</button>
+    </span> 
+    <div id="choicesContainer">
+        <div formArrayName="answers" *ngIf="isMultipleChoiceQuestion" cdkDropList (cdkDropListDropped)="onAnswerDropped($event)">
+            <div *ngFor="let answerGroup of answersArray; let i = index" [formGroupName]="i" cdkDrag cdkDragHandle class="draggable">
+                <label class="answerLabel" for="answer{{ i }}">Réponse {{ i + 1 }}:</label>
+                <label class="correctLabel">Correcte: </label>
+                <input type="checkbox" formControlName="isCorrect" />
+                <button class="deleteButton" type="button" (click)="deleteChoice(i)"color="warn">X</button>
+                <input class="input" maxlength="200" type="text" id="answer{{ i }}" formControlName="text" />
+            </div>
+        </div>
+    </div>
+
+    <button class="submitButton" mat-raised-button *ngIf="currentQuestion" type="submit" [disabled]="!isFormChanged">Modifier question</button>
+    <button class="submitButton" mat-raised-button *ngIf="!currentQuestion" type="submit" [disabled]="!isFormChanged">Ajouter question</button>
+    <button class="cancel-button" type="button" (click)="confirmCancel()" mat-raised-button color="warn">Annuler</button>
+</form>

@@ -1,0 +1,270 @@
+.blur-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(3px);
+    z-index: 10;
+}
+
+.leave-interface {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background-color: rgba(255, 255, 255, 0.8); /* Set the background color with some transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.start-countdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background-color: white;
+}
+.button {
+    box-sizing: border-box;
+    width: 50px;
+    height: auto;
+
+    color: black;
+    background-color: rgb(175, 170, 170);
+    border: 2px solid rgb(94, 91, 91);
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.button:hover {
+    filter: brightness(110%);
+}
+
+.button:active {
+    filter: brightness(85%);
+}
+
+.confirm-leave-button {
+    font-size: 0.9rem;
+}
+.confirm-leave-button:last-child {
+    margin-left: 10px;
+}
+
+.wait-area-wrapper {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.lock-button-and-leave-button {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.lock-button-container {
+    width: 33%;
+    display: flex;
+}
+
+.start-game-button {
+    cursor: pointer;
+}
+.start-game-button.disable {
+    cursor: default;
+}
+
+.game-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lock-button {
+    cursor: pointer;
+}
+
+.game-code-container {
+    display: flex;
+    width: 33%;
+    height: auto;
+}
+
+.game-code {
+    width: 33%;
+    color: white;
+    text-align: center;
+}
+
+.leave-button-container {
+    width: 33%;
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.leave-button {
+    margin: auto;
+}
+
+.player-list {
+    padding-inline-start: 0;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.players-list-container {
+    color: #d9d9d9;
+    width: 300px;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 10px;
+    z-index: 2;
+}
+
+@media screen and (min-width: 1200px) {
+    .player-list {
+        position: relative;
+        width: 1000px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 2;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .players-list-container {
+        width: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .players-list-container {
+        width: calc(100% - 20px);
+    }
+}
+
+.player {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    line-break: anywhere;
+    display: flex;
+    padding: 4px;
+    justify-content: center;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.firstColor {
+    background-color: #8458b3;
+}
+.secondColor {
+    background-color: #9254aa;
+}
+.thirdColor {
+    background-color: #a84f9c;
+}
+.fourthColor {
+    background-color: #b64c93;
+}
+
+.player-name {
+    margin: auto;
+    margin-left: calc(auto + 20px);
+}
+
+.ban-button {
+    margin-top: auto;
+    margin-bottom: auto;
+    float: right;
+    display: none;
+    height: calc(100% - 10px);
+    aspect-ratio: 1;
+    background-color: #ca2020;
+    border-color: #ca2020;
+    border-radius: 10px;
+    padding: 5px;
+    color: #d9d9d9;
+    cursor: pointer;
+}
+
+.organizerView:hover {
+    padding-left: 35px;
+}
+
+.player:hover .ban-button {
+    display: block;
+    align-items: center;
+}
+
+.block-icone {
+    transform: translate(-15%, -15%);
+}
+
+.leave-button {
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.game-code-container {
+    display: flex;
+    width: calc(100% - 40px);
+    height: auto;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.game-code {
+    color: white;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Tahoma', sans-serif;
+}
+
+.start-button-area {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-bar {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.submitButton {
+    width: 100px;
+    height: 50px;
+    font-size: 1.2rem;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.game-code-and-leave-button {
+    height: 50px;
+    display: flex;
+}

@@ -1,0 +1,8 @@
+<div class="background">
+    <section class="main-display" *ngIf="!isShowingForm">
+        <app-quiz-list (changeViewEvent)="changeView($event)"></app-quiz-list>
+    </section>
+    <section class="main-display" *ngIf="isShowingForm">
+        <app-create-quiz [quizInput]="currentQuiz" (changeViewEvent)="changeView($event)"></app-create-quiz>
+    </section>
+</div>

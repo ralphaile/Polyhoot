@@ -1,0 +1,136 @@
+$flame-icon-height: 40px;
+
+.list-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.player-container {
+    background-color: #a4a4a4;
+    height: auto;
+    min-height: 89px;
+    width: calc(100% - 30px);
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.name-and-flame-container {
+    height: $flame-icon-height;
+    width: 100%;
+    display: flex;
+}
+
+.flame-container {
+    height: 100%;
+    aspect-ratio: 1;
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+.flame-icon {
+    height: 100%;
+    width: 100%;
+    background: center / contain no-repeat url('../../../assets/flame_icon.png');
+    display: flex;
+}
+
+.player-first-answer {
+    padding-top: 10px;
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}
+
+.player-name {
+    display: inline;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.chat-icon {
+    margin: auto;
+    margin-right: 10px;
+}
+.chat-icon:hover {
+    cursor: pointer;
+}
+.player-name.isDisconnected {
+    text-decoration: line-through;
+}
+
+.medal-icon {
+    height: 30px;
+    width: 30px;
+    float: right;
+    transform: translate(0, -10px);
+}
+
+.gold {
+    background: center / contain no-repeat url('../../../assets/gold_medal_icon.png');
+}
+
+.silver {
+    background: center / contain no-repeat url('../../../assets/silver_medal_icon.png');
+}
+
+.bronze {
+    background: center / contain no-repeat url('../../../assets/bronze_medal_icon.png');
+}
+
+.player-score {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.sort {
+    margin-left: 10px;
+}
+mat-label:hover {
+    cursor: pointer;
+}
+
+::ng-deep .mdc-text-field:hover {
+    cursor: pointer;
+}
+.buttonContainer {
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+.button {
+    box-sizing: border-box;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    user-select: none;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #d9d9d9;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+}
+.button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    outline: none;
+}
+.button:active {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    outline: none;
+}

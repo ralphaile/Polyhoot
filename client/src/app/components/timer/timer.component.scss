@@ -1,0 +1,139 @@
+// the css and html for the rotating border is heavily inspired form https://codepen.io/suez/pen/dXbBGp
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:host {
+    --rotation-speed: 1.3s;
+}
+
+$bgColor: #32386d;
+
+$numOfColBlocks: 3; // must be higher than 2
+$deg: calc(360deg / $numOfColBlocks);
+
+$red: #fd3359;
+$yellow: #f4d302;
+$blue: #21bdff;
+
+$blocksColors: (
+    1: $red,
+    2: $yellow,
+    3: $blue,
+);
+
+$size: 100%;
+$pad: 9%;
+$contBr: 30%;
+
+.timerContainer {
+    width: 100%;
+    height: 100%;
+}
+.timerContainer.displayButton {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.buttonsContainer {
+    display: inline-grid;
+    align-content: stretch;
+    justify-content: space-around;
+}
+
+.button {
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button.disable {
+    cursor: default;
+}
+
+.pauseButton {
+    margin-right: 10px;
+}
+
+.panicButton {
+    background-color: #fd3359;
+}
+
+.time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.demo {
+    position: relative;
+    width: $size;
+    height: $size;
+    padding: $pad;
+
+    &__colored-blocks {
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: $size;
+        height: 100%;
+        margin-left: calc($size/-2);
+        border-radius: $contBr;
+
+        &-rotater {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: $contBr;
+            animation: rotation var(--rotation-speed) linear infinite;
+        }
+
+        &-inner {
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            background: $bgColor;
+            border-radius: $contBr;
+        }
+    }
+
+    &__colored-block {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 300%;
+        height: 300%;
+        transform-origin: 0 0;
+
+        @for $i from 1 through $numOfColBlocks {
+            &:nth-child(#{$i}) {
+                $rt: $deg * ($i - 1);
+                $skew: 90deg - $deg;
+                transform: rotate($rt) skewX($skew);
+                background-color: map-get($blocksColors, $i);
+            }
+        }
+    }
+
+    &__inner {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes rotation {
+    to {
+        transform: rotate(360deg);
+    }
+}

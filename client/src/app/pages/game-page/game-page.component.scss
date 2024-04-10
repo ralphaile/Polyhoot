@@ -1,0 +1,73 @@
+$headerHeight: 80px;
+
+:root {
+    --chat-wight: 400px;
+    --player-list-width: 250px;
+}
+
+.play-area-and-sidebar-container {
+    height: calc(100vh - $headerHeight);
+    width: 100vw;
+    display: flex;
+    overflow: hidden;
+}
+
+.play-area-container {
+    height: 100%;
+    width: calc(100vw - var(--chat-wight) - var(--player-list-width));
+    background: repeating-linear-gradient(45deg, #7724bb, #0c0b0c 15vw);
+    z-index: 1;
+}
+
+.play-area {
+    display: grid;
+    outline: none;
+    height: 100%;
+    z-index: 2;
+}
+
+#sidebar {
+    width: var(--chat-wight);
+    height: 100%;
+    background-color: #26282d;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.player-list {
+    height: 100%;
+    width: var(--player-list-width);
+    background-color: #26282d;
+}
+
+.master-resizer {
+    height: 100%;
+    width: 10px;
+    margin-left: -5px;
+    margin-right: -5px;
+    cursor: ew-resize;
+    z-index: 900;
+}
+
+.mouseResizing {
+    cursor: ew-resize;
+    user-select: none;
+}
+
+.start-countdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background-color: white;
+}
+
+.blur-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(3px);
+    z-index: 10;
+}
